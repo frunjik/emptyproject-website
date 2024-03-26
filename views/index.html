@@ -14,10 +14,10 @@
 </div>
 <br />
 <div class="row">
-	<div class="col-md-8 col-md-offset-2">
-		<!-- NEWSLETTER COMPONENT -->
-		<div data-jc-url="/components/newsletter.html"></div>
-	</div>
+    <!-- NEWSLETTER COMPONENT -->
+    <div class="col-md-8 col-md-offset-2">
+        <ui-component name="part" path="common.page" config="if:home;url:/components/newsletter.html"></ui-component>
+    </div>
 </div>
 <br />
 <hr />
@@ -47,3 +47,31 @@
 		<a href="/contact/" class="linkbutton">CONTACT US</a>
 	</div>
 </div>
+
+<script>
+
+    var form = {};
+	form.newsletter = true;
+
+    ON('ready', function() {
+    });
+
+
+    var common = {};
+
+    CACHEPATH('common.page', '1 week');
+    CACHEPATH('common.darkmode', '1 week');
+
+    common.page = 'home';
+    common.layout = '';
+
+    PLUGIN('common', function(exports) {
+
+        exports.page = function(el) {
+            var id = typeof(el) === 'string' ? el : el.attrd('if');
+            exports.set('page', id);
+        };
+
+    });
+</script>
+
