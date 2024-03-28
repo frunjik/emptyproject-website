@@ -1,18 +1,11 @@
-@{title('Contact')}
-
-<ui-bind path="common.page" config="html:value"></ui-bind>
-<ui-bind path="page" config="html:value"></ui-bind>
-
 <div class="row">
+
     <div class="col-md-2"></div>
 	<div class="col-md-8 m">
-        <h1>@{title}</h1>
         <ui-component name="part" path="common.page" config="if:contact;url:/components/contactform.html"></ui-component>
-
 	</div>
+
 </div>
 
-
 <script>
-</script> 
-
+</script>

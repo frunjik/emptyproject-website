@@ -1,52 +1,12 @@
 @{title('Full website example')}
 
-<h1>Total.js Example</h1>
-<div class="row">
-	<div class="col-md-4 col-sm-4 m">
-		<a href="/services/"><img src="/img/001.jpg" border="0" alt="Eshop" class="img-responsive img-rounded" /></a>
-	</div>
-	<div class="col-md-4 col-sm-4 m">
-		<a href="/services/"><img src="/img/002.jpg" border="0" alt="Easy modifications" class="img-responsive img-rounded" /></a>
-	</div>
-	<div class="col-md-4 col-sm-4 m">
-		<a href="/services/"><img src="/img/003.jpg" border="0" alt="Redesign it" class="img-responsive img-rounded" /></a>
-	</div>
-</div>
-<br />
-<div class="row">
-    <!-- NEWSLETTER COMPONENT -->
-    <div class="col-md-8 col-md-offset-2">
-        <ui-component name="part" path="common.page" config="if:home;url:/components/newsletter.html"></ui-component>
-    </div>
-</div>
-<br />
-<hr />
-<br />
-<div class="row">
-	<div class="col-md-3 col-sm-3 m">
-		<h3>Lorem ipsum dolor</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate vitae ipsam nesciunt officia, ipsa quo molestiae ex quibusdam praesentium odit.</p>
-	</div>
-	<div class="col-md-3 col-sm-3 m">
-		<h3>Lorem ipsum dolor</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate vitae ipsam nesciunt officia, ipsa quo molestiae ex quibusdam praesentium odit.</p>
-	</div>
-	<div class="col-md-3 col-sm-3 m">
-		<h3>Lorem ipsum dolor</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate vitae ipsam nesciunt officia, ipsa quo molestiae ex quibusdam praesentium odit.</p>
-	</div>
-	<div class="col-md-3 col-sm-3 m">
-		<h3>Lorem ipsum dolor</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate vitae ipsam nesciunt officia, ipsa quo molestiae ex quibusdam praesentium odit.</p>
-	</div>
-</div>
-<br />
-<br />
-<div class="row">
-	<div class="col-md-6 col-md-offset-3 m">
-		<a href="/contact/" class="linkbutton">CONTACT US</a>
-	</div>
-</div>
+<ui-component name="importer" path="common.page" config="if:home;url:/pages/home.html"></ui-component>
+<ui-component name="importer" path="common.page" config="if:pageservices;url:/services.html"></ui-component>
+<ui-component name="importer" path="common.page" config="if:contact;url:/pages/contact.html"></ui-component>
+<ui-component name="importer" path="common.page" config="if:services;url:/pages/services.html"></ui-component>
+<ui-component name="importer" path="common.page" config="if:references;url:/pages/references.html"></ui-component>
+
+<!-- @{view} -->
 
 <script>
 
@@ -65,13 +25,35 @@
     common.page = 'home';
     common.layout = '';
 
+    
     PLUGIN('common', function(exports) {
+
+        // SET('page', 'home');
 
         exports.page = function(el) {
             var id = typeof(el) === 'string' ? el : el.attrd('if');
             exports.set('page', id);
         };
 
+        ROUTE('/', function() {
+            SET('common.page', 'home');
+        });
+
+        ROUTE('/home/', function() {
+            SET('common.page', 'home');
+        });
+
+        ROUTE('/references/', function() {
+            SET('common.page', 'references');
+        });
+
+        ROUTE('/services/', function() {
+            SET('common.page', 'services');
+        });
+
+        ROUTE('/contact/', function() {
+            SET('common.page', 'contact');
+        });
+
     });
 </script>
-
